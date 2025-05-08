@@ -1,0 +1,30 @@
+name: Count Tokens in Uploaded Files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  count-tokens:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install tiktoken python-docx PyMuPDF
+
+      - name: Run Token Counter
+        run: python token_counter.py
+
+      - name: Upload Token Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: token-report
+          path: token_report.txt
