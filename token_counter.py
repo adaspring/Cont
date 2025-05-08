@@ -7,7 +7,7 @@ from docx import Document
 def extract_text(file_path):
     ext = os.path.splitext(file_path)[1].lower()
 
-    if ext in {".txt", ".html", ".json", ".csv", ".xml", ".md", ".py"}:
+    if ext in {".txt", ".html", ".json", ".csv", ".xml", ".md", ".py", ".js", ".css"}:
         with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
             return f.read()
     elif ext == ".pdf":
@@ -56,7 +56,7 @@ def main():
     with open("token_report.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(report_lines))
 
-    print("\n".join(report_lines))  # Still show in logs
+    print("\n".join(report_lines))
 
 if __name__ == "__main__":
     main()
